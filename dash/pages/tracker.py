@@ -18,13 +18,18 @@ layout = html.Div(
                         "font-size": "20px",
                         "color": "black",
                         "text-align": "center",
+                        "border": "1px solid #333",
+                        "border-radius": "5px",
                     },
                 ),
                 html.P(
                     "Pick a cryptocurrency and date range to track",
                     style={"text-align": "center", "color": "black"},
                 ),
-                html.Img(src="assets/settings.png", style={"width": "320px"}),
+                html.Img(
+                    src="assets/settings.png",
+                    style={"width": "320px"},
+                ),
                 html.Label(
                     "Choose a cryptocurrency",
                     style={
@@ -72,6 +77,8 @@ layout = html.Div(
                 "background-color": "white",
                 "float": "left",
                 "padding": "20px",
+                "border": "1px solid #333",
+                "border-radius": "5px",
             },
         ),
         html.Div(
@@ -88,9 +95,15 @@ layout = html.Div(
                 ),
             ],
             id="right-container",
-            style={"padding": "20px", "margin-left": "360px"},
+            style={
+                "padding": "20px",
+                "margin-left": "360px",
+                "border": "1px solid #333",
+                "border-radius": "5px",
+            },
         ),
-    ]
+    ],
+    className="container",
 )
 
 
