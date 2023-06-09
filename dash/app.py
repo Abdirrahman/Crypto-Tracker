@@ -25,7 +25,7 @@ app.layout = html.Div(
             [
                 html.Div(
                     dcc.Link(
-                        f"{page['name']} - {page['path']}",
+                        f"{page['name']}",
                         href=page["relative_path"],
                         style={
                             "margin-right": "10px",
