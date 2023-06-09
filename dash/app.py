@@ -5,7 +5,12 @@ app = Dash(__name__, use_pages=True)
 
 app.layout = html.Div([
     html.Div(
-        html.H1("Crypto Tracker")
+        html.H1("Crypto Tracker",
+                style={'margin-top': '50px',
+                       'text-transform': 'uppercase',
+                       'font-size': '40px',
+                       'color': 'black',
+                       'text-align': 'center'})
     ),
     html.Div(
         [
@@ -18,7 +23,7 @@ app.layout = html.Div([
         ]
     ),
     dash.page_container
-])
+], style={"width": "100%", "overflow": "hidden"})
 
 if __name__ == '__main__':
     app.run_server(debug=True)
