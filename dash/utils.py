@@ -36,6 +36,13 @@ def get_crypto_data(auth_token: str, crypto: str = CRYPTO, interval: str = INTER
     return r.json()
 
 
+def capitalize_words(sentence):
+    words = sentence.split(" ")
+    capitalized_words = [word.capitalize() for word in words]
+    capitalized_sentence = " ".join(capitalized_words)
+    return capitalized_sentence
+
+
 def get_crypto_graph(start, end, crypto):
     response = get_crypto_data(
         auth_token=os.environ['api_key'], start=start, end=end, crypto=crypto)
@@ -46,4 +53,16 @@ def get_crypto_graph(start, end, crypto):
     df['time'] = df['time'].apply(lambda x: millis_to_datetime(x))
     fig = px.line(df, x='time', y='priceUsd', labels={
         'time': 'Date', 'priceUsd': 'Price (USD)'})
+
+    fig.update_layout(title={"text": f"{capitalize_words(crypto)} Graph", "x": 0.5,
+                      "y": 0.9, "xanchor": "center", "yanchor": "middle"})
+
     return fig
+
+
+def get_crypto_list():
+    url = f"https://api.coincap.io/v2/assets"
+    r = req.request("GET", url).json()
+    val = [{'label': crypto['name'], 'value': crypto['id']}
+           for crypto in r['data']]
+    return val
