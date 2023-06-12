@@ -13,20 +13,13 @@ app.layout = html.Div(
                         "text-transform": "uppercase",
                         "font-size": "40px",
                         "color": "#333",
-                        "text-align": "left",
+                        "text-align": "center",
                         "padding": "20px",
                         "margin": "0",
                         "font-family": "Arial, sans-serif",
-                        "border": "1px solid #333",
-                        "border-radius": "5px",
                     },
                 ),
             ],
-            style={
-                "border": "1px solid #333",
-                "border-radius": "5px",
-                "padding": "20px",
-            },
         ),
         html.Div(
             [
@@ -41,32 +34,19 @@ app.layout = html.Div(
                             "font-weight": "bold",
                             "font-size": "18px",
                             "font-family": "Arial, sans-serif",
-                            "transition": "background-color 0.3s",
                         },
                     ),
                 )
                 for page in dash.page_registry.values()
             ],
-            style={
-                "padding": "10px",
-                "text-align": "center",
-                "border": "1px solid #333",
-                "border-radius": "5px",
-            },
-            className="navigation",
+            style={"padding": "10px", "text-align": "center"},
         ),
         dash.page_container,
     ],
-    style={
-        "width": "100%",
-        "overflow": "hidden",
-        "font-family": "Arial, sans-serif",
-        "padding": "20px",
-        "border": "1px solid #333",
-        "border-radius": "5px",
-    },
-    className="container",
+    style={"width": "100%", "overflow": "hidden",
+           "font-family": "Arial, sans-serif"},
 )
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     app.run_server(debug=True)
