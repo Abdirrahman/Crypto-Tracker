@@ -44,6 +44,7 @@ if __name__ == "__main__":
 
     console.print(data)
 
+   
     # plotting graph
     df = pd.DataFrame(data)
     df['priceUsd'] = df['priceUsd'].astype(float)

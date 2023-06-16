@@ -6,3 +6,8 @@ pytz==2023.3
 requests==2.31.0
 urllib3==2.0.3
 zope.interface==6.0
+numpy
+pandas
+sklearn
+python-dotenv
+keras
