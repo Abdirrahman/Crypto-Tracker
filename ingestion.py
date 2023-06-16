@@ -13,7 +13,7 @@ CRYPTO = "ethereum"
 INTERVAL = "d1"
 START = "1448064000000"
 END = datetime.now().timestamp() * 1000
-PREVIOUS_MONTH = (datetime.now() - timedelta(days=31)) * 1000
+PREVIOUS_MONTH = (datetime.now() - timedelta(days=31)).timestamp() * 1000
 
 console = Console()
 
@@ -44,5 +44,3 @@ def get_prediction_data(auth_token: str, crypto: str = CRYPTO, interval: str = I
     r = req.request("GET", url, headers=headers)
 
     return r.json()
-
-
