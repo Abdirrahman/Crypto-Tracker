@@ -174,3 +174,4 @@ variables.tf
 build.sh
 run.sh
 test.sh
+venv
