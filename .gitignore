@@ -162,6 +162,7 @@ transfer/tmp
 *.tfstate
 *.tfstate.backup
 terraform.tfvars
+*.csv
 
 .terraform*
 .DS_Store
