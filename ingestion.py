@@ -19,17 +19,14 @@ console = Console()
 
 
 def unix_converter():
+    '''Converts datetime into unix format'''
     date = datetime(2023, 5, 1)
 
     return time.mktime(date.timetuple())
 
-def millis_to_datetime(millis: int):
-    date = datetime.fromtimestamp(millis/1000.0, tz=timezone.utc)
-    return date
 
-
-def get_crypto_data(auth_token: str, crypto: str = CRYPTO, interval: str = INTERVAL, start: str = START, end: str = PREVIOUS_MONTH) -> dict[list, str]:
-
+def get_training_data(auth_token: str, crypto: str = CRYPTO, interval: str = INTERVAL, start: str = START, end: str = PREVIOUS_MONTH) -> dict[list, str]:
+    '''Retrieves ETH data from the start date to last month'''
     url = f"https://api.coincap.io/v2/assets/{crypto}/history?interval={interval}&start={start}&end={end}"
 
     headers = {"X-CoinAPI-Key": auth_token}
@@ -39,7 +36,7 @@ def get_crypto_data(auth_token: str, crypto: str = CRYPTO, interval: str = INTER
     return r.json()
 
 def get_prediction_data(auth_token: str, crypto: str = CRYPTO, interval: str = INTERVAL, start: str = PREVIOUS_MONTH, end: str = END) -> dict[list, str]:
-
+    '''Retrieves ETH data from past month'''
     url = f"https://api.coincap.io/v2/assets/{crypto}/history?interval={interval}&start={start}&end={end}"
 
     headers = {"X-CoinAPI-Key": auth_token}
@@ -48,15 +45,4 @@ def get_prediction_data(auth_token: str, crypto: str = CRYPTO, interval: str = I
 
     return r.json()
 
-
-if __name__ == "__main__":
-    # prerequisites
-    load_dotenv()
-
-    # getting data
-    response = get_crypto_data(auth_token=os.environ['api_key'])
-    date = millis_to_datetime(response['timestamp'])
-    data = response["data"]
-
-    console.print(unix_converter())
 
