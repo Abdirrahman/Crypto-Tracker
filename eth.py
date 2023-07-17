@@ -11,8 +11,8 @@ import pandas as pd
 
 CRYPTO = "ethereum"
 INTERVAL = "d1"
-START = "1448064000000"
-END = dt.datetime.now().timestamp() * 1000
+START = 1448064000000
+END = str(dt.datetime.now().timestamp() * 1000)
 
 console = Console()
 
@@ -33,21 +33,24 @@ def get_crypto_data(auth_token: str, crypto: str = CRYPTO, interval: str = INTER
     return r.json()
 
 
-if __name__ == "__main__":
-    # prerequisites
-    load_dotenv()
-
-    # getting data
-    response = get_crypto_data(auth_token=os.environ['api_key'])
+def get_crypto_graph(start, end, crypto):
+    response = get_crypto_data(
+        auth_token=os.environ['api_key'], start=start, end=end, crypto=crypto)
     date = millis_to_datetime(response['timestamp'])
     data = response["data"]
-
-    console.print(data)
-
-    # plotting graph
     df = pd.DataFrame(data)
     df['priceUsd'] = df['priceUsd'].astype(float)
     df['time'] = df['time'].apply(lambda x: millis_to_datetime(x))
     fig = px.line(df, x='time', y='priceUsd', labels={
         'time': 'Date', 'priceUsd': 'Price (USD)'})
+    return fig
+
+
+if __name__ == "__main__":
+    # prerequisites
+    load_dotenv()
+
+    # getting data
+    fig = get_crypto_graph(START, END, CRYPTO)
+
     fig.show()
