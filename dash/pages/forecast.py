@@ -1,8 +1,9 @@
+from datetime import datetime
 import dash
 import numpy as np
+import pandas as pd
 from dash import html, dcc
 import plotly.express as px
-from datetime import datetime
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVR
 
@@ -32,6 +33,10 @@ svr_rbf.fit(x_train, y_train)
 
 X_pred = np.array(prediction_dataframe[['priceUsd']])
 predicted_forecast = svr_rbf.predict(X_pred)
+
+prediction_dataframe['date'] = pd.to_datetime(prediction_dataframe['date'])
+prediction_dataframe['date'] = prediction_dataframe['date'] + \
+    pd.Timedelta(days=30)
 
 fig = px.line(x=prediction_dataframe['date'], y=predicted_forecast)
 

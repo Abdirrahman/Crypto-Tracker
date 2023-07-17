@@ -108,4 +108,4 @@ if __name__ == '__main__':
     X_pred = np.array(prediction_dataframe[['priceUsd']])
     predicted_forecast = svr_rbf.predict(X_pred)
 
-    px.line(x=prediction_dataframe['date'], y=predicted_forecast)
+    # px.line(x=prediction_dataframe['date'], y=predicted_forecast)

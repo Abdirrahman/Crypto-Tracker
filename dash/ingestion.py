@@ -35,6 +35,7 @@ def get_training_data(auth_token: str, crypto: str = CRYPTO, interval: str = INT
 
     return r.json()
 
+
 def get_prediction_data(auth_token: str, crypto: str = CRYPTO, interval: str = INTERVAL, start: str = PREVIOUS_MONTH, end: str = END) -> dict[list, str]:
     '''Retrieves ETH data from past month'''
     url = f"https://api.coincap.io/v2/assets/{crypto}/history?interval={interval}&start={start}&end={end}"
@@ -44,3 +45,8 @@ def get_prediction_data(auth_token: str, crypto: str = CRYPTO, interval: str = I
     r = req.request("GET", url, headers=headers)
 
     return r.json()
+
+
+if __name__ == '__main__':
+
+    print(get_prediction_data(auth_token="f1e0d98d-0a80-4dcc-8d29-908527d69eea"))
