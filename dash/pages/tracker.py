@@ -4,7 +4,9 @@ from utils import get_crypto_graph, datetime_to_millis, get_crypto_list
 import plotly.express as px
 from datetime import datetime
 
+
 dash.register_page(__name__, path="/tracker")
+
 
 layout = html.Div(
     [
