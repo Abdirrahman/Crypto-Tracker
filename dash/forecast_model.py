@@ -18,18 +18,20 @@ import plotly.express as px
 FUTURE_DAYS = 30
 
 
-def load_prediction_data() -> dict:
+def load_prediction_data(crypto: str) -> dict:
     '''Returns ETH prediction data as JSON'''
     load_dotenv()
-    eth_prediction = get_prediction_data(auth_token=os.environ['api_key'])
+    eth_prediction = get_prediction_data(
+        auth_token=os.environ['api_key'], crypto=crypto)
     prediction_data = eth_prediction['data']
 
     return prediction_data
 
 
-def load_training_data() -> dict:
+def load_training_data(crypto: str) -> dict:
     '''Returns ETH training data'''
-    eth_train = get_training_data(auth_token=os.environ['api_key'])
+    eth_train = get_training_data(
+        auth_token=os.environ['api_key'], crypto=crypto)
     train_data = eth_train['data']
 
     return train_data

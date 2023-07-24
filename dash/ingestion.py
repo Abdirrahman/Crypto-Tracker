@@ -9,7 +9,7 @@ from requests.auth import HTTPBasicAuth
 import numpy as np
 import pandas as pd
 
-CRYPTO = "ethereum"
+# CRYPTO = "ethereum"
 INTERVAL = "d1"
 START = "1448064000000"
 END = datetime.now().timestamp() * 1000
@@ -25,7 +25,7 @@ def unix_converter():
     return time.mktime(date.timetuple())
 
 
-def get_training_data(auth_token: str, crypto: str = CRYPTO, interval: str = INTERVAL, start: str = START, end: str = PREVIOUS_MONTH) -> dict[list, str]:
+def get_training_data(auth_token: str, crypto: str, interval: str = INTERVAL, start: str = START, end: str = PREVIOUS_MONTH) -> dict[list, str]:
     '''Retrieves ETH data from the start date to last month'''
     url = f"https://api.coincap.io/v2/assets/{crypto}/history?interval={interval}&start={start}&end={end}"
 
@@ -36,7 +36,7 @@ def get_training_data(auth_token: str, crypto: str = CRYPTO, interval: str = INT
     return r.json()
 
 
-def get_prediction_data(auth_token: str, crypto: str = CRYPTO, interval: str = INTERVAL, start: str = PREVIOUS_MONTH, end: str = END) -> dict[list, str]:
+def get_prediction_data(auth_token: str, crypto: str, interval: str = INTERVAL, start: str = PREVIOUS_MONTH, end: str = END) -> dict[list, str]:
     '''Retrieves ETH data from past month'''
     url = f"https://api.coincap.io/v2/assets/{crypto}/history?interval={interval}&start={start}&end={end}"
 
